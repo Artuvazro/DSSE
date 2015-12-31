@@ -1,0 +1,115 @@
+﻿<Window x:Name="ventanaPrincipal" x:Class="Devil_Survivor_Script_Editor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Devil_Survivor_Script_Editor"
+        mc:Ignorable="d"
+        xmlns:p="clr-namespace:Devil_Survivor_Script_Editor.Properties"
+        Title="DSSE - Devil Survivor Script Editor" Height="720" Width="1024" Background="{DynamicResource WindowBackgroundBrush}" WindowStyle="ThreeDBorderWindow" ResizeMode="CanMinimize" Icon="jficon.ico" Visibility="Visible">
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Open" CanExecute="OpenCommand_CanExecute" Executed="openButton_Click"/>
+        <CommandBinding Command="ApplicationCommands.Save" CanExecute="SaveCommand_CanExecute" Executed="saveButton_Click"/>
+        <CommandBinding Command="local:CustomCommands.Next" CanExecute="NextCommand_CanExecute" Executed="buttonSiguienteTexto_Click" />
+        <CommandBinding Command="local:CustomCommands.Prev" CanExecute="PrevCommand_CanExecute" Executed="buttonAnteriorTexto_Click" />
+        <CommandBinding Command="local:CustomCommands.Goto" CanExecute="GotoCommand_CanExecute" Executed="GotoCommand_Executed" />
+        <CommandBinding Command="local:CustomCommands.Copy" CanExecute="CopyCommand_CanExecute" Executed="buttonCopiarTexto_Click" />
+    </Window.CommandBindings>
+    <Grid Width="1024" Height="720">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="145*"/>
+            <ColumnDefinition Width="879*"/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="traducidoTitulo" Content="{x:Static p:Resources.translationLabel}" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="32" Margin="260,424,0,0" Grid.Column="1" FontFamily="Tahoma" Foreground="{DynamicResource ButtonNormalBackground}"/>
+        <Label x:Name="originalTitulo" Content="{x:Static p:Resources.originalLabel}" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="32" Margin="260,151,0,0" Grid.Column="1" FontFamily="Tahoma" Foreground="{DynamicResource ButtonNormalBackground}"/>
+        <TextBox x:Name="originalTextBox" HorizontalAlignment="Left" Height="77" TextWrapping="Wrap" VerticalAlignment="Top" Width="402" Margin="262,204,0,0" AcceptsReturn="True" Panel.ZIndex="1" Foreground="#FF878787" Grid.Column="1" TextChanged="originalTextBox_TextChanged" IsReadOnly="True"/>
+        <TextBox x:Name="traduccionTextBox" HorizontalAlignment="Left" Height="77" TextWrapping="Wrap" VerticalAlignment="Top" Width="402" Margin="262,474,0,0" AcceptsReturn="True" Panel.ZIndex="1" Grid.Column="1" TextChanged="traduccionTextBox_TextChanged" SpellCheck.IsEnabled="True"/>
+        <ListBox x:Name="archivosListBox" HorizontalAlignment="Left" Height="347" VerticalAlignment="Top" Width="113" Margin="729,133,0,0" Grid.Column="1" SelectionChanged="archivosListBox_SelectionChanged"/>
+        <Label x:Name="archivosTitulo" Content="{x:Static p:Resources.filesLabel}" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="26.667" Margin="729,88,0,0" Grid.Column="1" FontFamily="Tahoma" Foreground="{DynamicResource ButtonNormalBackground}"/>
+        <Grid HorizontalAlignment="Left" Height="200" Margin="46,88,0,0" VerticalAlignment="Top" Width="256" Background="Black" Grid.ColumnSpan="2">
+            <Image x:Name="textBackgroundImageT" HorizontalAlignment="Left" Height="60" VerticalAlignment="Top" Width="248" Source="images/textbg.png" Margin="3,135,0,0" Cursor="None" RenderTransformOrigin="0.5,0.5" OpacityMask="Black" Stretch="None"/>
+            <!--<TextBox Style="{StaticResource dialogueTextDisplay}" x:Name="originalDisplaytextBox" HorizontalAlignment="Left" Height="42" TextWrapping="Wrap" Text="{Binding ElementName=originalTextBox,Path=Text}" VerticalAlignment="Top" Width="230" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Panel.ZIndex="2" FontFamily="../fuentes/#SMT: Devil Survivor" IsReadOnly="True" AcceptsReturn="True" FontSize="16" Margin="17,148,0,0" TextBlock.LineHeight="13px" TextBlock.LineStackingStrategy="BlockLineHeight" TextOptions.TextFormattingMode="Display" TextOptions.TextRenderingMode="Grayscale"/>-->
+            <TextBlock x:Name="OutPutOrigintextBlock" TextOptions.TextFormattingMode="Display" TextOptions.TextRenderingMode="Grayscale" LineStackingStrategy="BlockLineHeight" FontFamily="../fuentes/#SMT: Devil Survivor, Verdana" LineHeight="13" FontSize="16" HorizontalAlignment="Left" Margin="20,149,0,0" TextWrapping="Wrap" Text="{Binding Text, ElementName=originalTextBox}" VerticalAlignment="Top" Height="42" Width="230" Foreground="White"/>
+        </Grid>
+        <Grid HorizontalAlignment="Left" Height="200" Margin="46,353,0,0" VerticalAlignment="Top" Width="256" Background="Black" Grid.ColumnSpan="2">
+            <Image x:Name="textBackgroundImageO" HorizontalAlignment="Left" Height="60" VerticalAlignment="Top" Width="248" Source="images/textbg.png" Margin="3,135,0,0" Cursor="None" RenderTransformOrigin="0.5,0.5" OpacityMask="Black" Stretch="None"/>
+            <!--<TextBox Style="{StaticResource dialogueTextDisplay}" x:Name="translatedDisplaytextBox1" HorizontalAlignment="Left" Height="42" Text="{Binding ElementName=traduccionTextBox,Path=Text}" VerticalAlignment="Top" Width="230" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Panel.ZIndex="2" FontFamily="../fuentes/#SMT: Devil Survivor" IsReadOnly="True" AcceptsReturn="True" FontSize="16" Margin="17,148,0,0" TextBlock.LineHeight="13px" TextBlock.LineStackingStrategy="BlockLineHeight"  Padding="1" TextOptions.TextFormattingMode="Display" TextOptions.TextRenderingMode="Grayscale" TextWrapping="Wrap"/>-->
+            <TextBlock x:Name="OutPutTranstextBlock" TextOptions.TextFormattingMode="Display" TextOptions.TextRenderingMode="Grayscale" LineStackingStrategy="BlockLineHeight" FontFamily="../fuentes/#SMT: Devil Survivor, Verdana" LineHeight="13" FontSize="16" HorizontalAlignment="Left" Margin="20,149,0,0" TextWrapping="Wrap" Text="{Binding ElementName=traduccionTextBox,Path=Text}" VerticalAlignment="Top" Height="42" Width="230" Foreground="White"/>
+        </Grid>
+        <ToolBarTray HorizontalAlignment="Left" Height="24" VerticalAlignment="Top" Width="1014" Grid.ColumnSpan="2">
+            <ToolBar x:Name="mainToolBar" HorizontalAlignment="Left" Margin="-10,0,-959,0" VerticalAlignment="Top" Width="1040" RenderTransformOrigin="0.533,1.654">
+                <Button x:Name="openButton" Command="ApplicationCommands.Open" VerticalAlignment="Bottom" Width="72">
+                    <Button.ToolTip>
+                        <TextBlock>
+                            <Run Text="{x:Static p:Resources.fileOpenTextSub}" FontWeight="Bold"></Run>
+                            <LineBreak/>
+                            <Run Text="{x:Static p:Resources.fileOpenText}"></Run>
+                        </TextBlock>
+                    </Button.ToolTip>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="./images/icons/folder.png" Stretch="None"/>
+                        <TextBlock Text="{x:Static p:Resources.fileOpen}" FontSize="12" FontFamily="Tahoma" Padding="5,0,0,0"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="saveButton" Command="ApplicationCommands.Save" VerticalAlignment="Bottom" Width="90">
+                    <Button.ToolTip>
+                        <TextBlock>
+                            <Run Text="{x:Static p:Resources.fileSaveTextSub}" FontWeight="Bold"></Run>
+                            <LineBreak/>
+                            <Run Text="{x:Static p:Resources.fileSaveText}"></Run>
+                        </TextBlock>
+                    </Button.ToolTip>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="./images/icons/disk.png"/>
+                        <TextBlock Text="{x:Static p:Resources.fileSave}" FontSize="12" FontFamily="Tahoma" Padding="5,0,0,0"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="aboutButton" ToolTip="{x:Static p:Resources.aboutText}" VerticalAlignment="Bottom" Width="93" Click="aboutButton_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="./images/icons/question.png" Stretch="None"/>
+                        <TextBlock Text="{x:Static p:Resources.about}" FontSize="12" FontFamily="Tahoma" Padding="5,0,0,0"/>
+                    </StackPanel>
+                </Button>
+            </ToolBar>
+        </ToolBarTray>
+        <Button x:Name="buttonSiguienteTexto" Command="local:CustomCommands.Next" Grid.Column="1" HorizontalAlignment="Left" Margin="501,349,0,0" VerticalAlignment="Top" Width="43" Height="34" IsEnabled="False" ToolTip="{x:Static p:Resources.nextSegText}">
+            <Image Source="./images/icons/arrow.png"/>
+        </Button>
+        <Button x:Name="buttonOpeninNote" Grid.Column="1" HorizontalAlignment="Left" Margin="601,349,0,0" VerticalAlignment="Top" Width="43" Height="34" Click="buttonOpeninNote_Click" IsEnabled="False" ToolTip="{x:Static p:Resources.openInNoteText}">
+            <Image Source="./images/icons/notebook--pencil.png"/>
+        </Button>
+        <Button x:Name="buttonAnteriorTexto"  Command="local:CustomCommands.Prev"  Grid.Column="1" HorizontalAlignment="Left" Margin="358,349,0,0" VerticalAlignment="Top" Width="43" Height="34" IsEnabled="False" ToolTip="{x:Static p:Resources.prevSegText}">
+            <Image Source="./images/icons/arrow-180.png"/>
+        </Button>
+        <Label x:Name="textNumber" Grid.Column="1" HorizontalAlignment="Left" Margin="450,349,0,0" VerticalAlignment="Top" Height="34" Width="45" Content="" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="{DynamicResource TextBrush}" Foreground="#FFD4D4D4" FontSize="13.333" Padding="5,2,5,5"/>
+        <TextBox x:Name="currentNumberBox" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" VerticalAlignment="Top" Width="44" Grid.Column="1" Margin="406,349,0,0" FontSize="13.333" AcceptsTab="True" IsUndoEnabled="False" MaxLength="3" MaxLines="1"  TextAlignment="Center" Padding="0,6,0,0" KeyUp="currentNumberBox_KeyUp" ToolTip="{x:Static p:Resources.jumpToText}" IsEnabled="False"/>
+        <Button x:Name="buttonCopiarTexto" Command="local:CustomCommands.Copy" Grid.Column="1" HorizontalAlignment="Left" Margin="298,349,0,0" VerticalAlignment="Top" Width="43" Height="34" ToolTip="{x:Static p:Resources.copyText}" IsEnabled="False">
+            <Image Source="images/icons/arrow-curve-270-left.png"/>
+        </Button>
+        <Grid Grid.Column="1" HorizontalAlignment="Left" Height="46" Margin="450,417,0,0" VerticalAlignment="Top" Width="198.666" Background="{DynamicResource HoverBrush}" UseLayoutRounding="False">
+            <Button x:Name="addYellowButton" Content="Yellow" HorizontalAlignment="Left" VerticalAlignment="Top" Width="45" Margin="59,25,0,0" Background="#FF869C00" Click="addYellowButton_Click" ToolTip="{x:Static p:Resources.tagYellowText}"/>
+            <Label x:Name="Tagslabel" Content="{x:Static p:Resources.tagLabel}" HorizontalAlignment="Left" Margin="73,2,0,26" RenderTransformOrigin="-1.605,4.231" Foreground="{DynamicResource ButtonNormalBackground}"/>
+            <Button x:Name="addYellow2Button" Content="Blue" HorizontalAlignment="Left" VerticalAlignment="Top" Width="51" Margin="111,25,0,0" Background="#FF8C8CBD" Click="addYellow2Button_Click" ToolTip="{x:Static p:Resources.tagBlueText}"/>
+            <Button x:Name="addNewButton" Content="New" HorizontalAlignment="Left" VerticalAlignment="Top" Width="45" Margin="10,25,0,0" Background="#FF660D09" Click="addNewButton_Click" ToolTip="{x:Static p:Resources.tagNewText}"/>
+            <Button x:Name="addInvertedButton" Content="&#8220;" HorizontalAlignment="Left" VerticalAlignment="Top" Width="25" Margin="166,25,0,0" Click="addInvertedButton_Click" ToolTip="{x:Static p:Resources.tagCommasText}" FontWeight="Bold"/>
+        </Grid>
+        <StatusBar HorizontalAlignment="Left" Height="39" Margin="0,650,0,0" VerticalAlignment="Top" Width="1014" Grid.ColumnSpan="2" Background="#FF2C2C2C" BorderThickness="0,2,0,0">
+            <StatusBarItem>
+                <Image x:Name="iconStatus" Height="16" Width="16" Opacity="0.8" Margin="0,0,0,10"/>
+            </StatusBarItem>
+            <StatusBarItem Margin="0,-3,0,1" Width="486" HorizontalAlignment="Left">
+                <TextBlock x:Name="statusText" TextWrapping="Wrap" FontSize="13.333" Width="460" FontFamily="Tahoma" Height="21" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            </StatusBarItem>
+            <StatusBarItem Margin="0,-3,0,5" Width="196" HorizontalAlignment="Left">
+                <TextBlock x:Name="wordsTextBlock" TextWrapping="Wrap" FontSize="13.333" Width="157" FontFamily="Tahoma" Height="21" HorizontalAlignment="Left" VerticalAlignment="Top" Text="" Foreground="{DynamicResource ButtonNormalBackground}"/>
+            </StatusBarItem>
+            <StatusBarItem Width="104" Margin="-50,0,0,0">
+                <Label x:Name="progressText" Content="" Margin="0,0,0,15" Visibility="Hidden" Foreground="{DynamicResource ButtonNormalBackground}" HorizontalAlignment="Right"/>
+            </StatusBarItem>
+            <StatusBarItem Margin="0,0,0,13">
+                <ProgressBar x:Name="outputProgress" Height="10" Width="208" RenderTransformOrigin="0.5,0.5" Visibility="Hidden" Foreground="{x:Null}" Background="#FFE6E6E6"/>
+            </StatusBarItem>
+        </StatusBar>
+        <TextBlock x:Name="textBlockAT" Grid.Column="1" HorizontalAlignment="Left" Margin="622,532,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="#FF66FF22" Foreground="White" FontWeight="Bold" Width="42" TextAlignment="Center" FontSize="16" FontFamily="Trebuchet MS" UseLayoutRounding="False" IsHitTestVisible="True" ToolTip="{x:Static p:Resources.ATtip}" Panel.ZIndex="1" Opacity="0.7" Visibility="Hidden"/>
+    </Grid>
+</Window>

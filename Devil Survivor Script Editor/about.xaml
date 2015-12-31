@@ -1,0 +1,22 @@
+﻿<Window x:Class="Devil_Survivor_Script_Editor.about"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Devil_Survivor_Script_Editor"
+        mc:Ignorable="d"
+        xmlns:p="clr-namespace:Devil_Survivor_Script_Editor.Properties"
+        Title="Acerca de..." Height="329.897" Width="352.577" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" Closed="Window_Closed" WindowStyle="None" MouseDown="Window_MouseDown">
+    <Grid Background="{DynamicResource LightBrush}">
+        <Label x:Name="label_author" Content="{x:Static p:Resources.authorLabel}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontFamily="Tahoma" FontSize="32" Foreground="{DynamicResource ButtonNormalBackground}"/>
+        <Label x:Name="label_authorText" Content="Leeg" HorizontalAlignment="Left" Margin="10,49,0,0" VerticalAlignment="Top" FontFamily="Tahoma" FontSize="18.667" RenderTransformOrigin="0.089,0.021" Foreground="White"/>
+        <Label x:Name="label__thanks" Content="{x:Static p:Resources.thanksLabel}" HorizontalAlignment="Left" Margin="10,75,0,0" VerticalAlignment="Top" FontFamily="Tahoma" FontSize="32" Foreground="{DynamicResource ButtonNormalBackground}"/>
+        <Label x:Name="label_thanksrText" HorizontalAlignment="Left" Margin="10,118,0,0" VerticalAlignment="Top" FontFamily="Tahoma" FontSize="18.667" RenderTransformOrigin="0.08,-0.177" Foreground="White">
+            <TextBlock FontSize="12" Text="{x:Static p:Resources.thanksText}"/>
+        </Label>
+        <Image x:Name="image" HorizontalAlignment="Left" Height="347" Margin="0,0,-80,-17" VerticalAlignment="Top" Width="433" Source="images/about-bg.jpg" Panel.ZIndex="-1" Opacity="0.25"/>
+        <Button x:Name="closeButton" Content="❌" HorizontalAlignment="Left" Margin="295,10,0,0" VerticalAlignment="Top" Width="39" RenderTransformOrigin="1.677,-0.525" Click="closeButton_Click"/>
+        <Label x:Name="versionLabel" Content="beta" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="295,295,0,0" Foreground="White"/>
+
+    </Grid>
+</Window>
