@@ -248,4 +248,8 @@ Yusuke Kamiyamane
   <data name="words" xml:space="preserve">
     <value>Words: </value>
   </data>
+  <data name="copyAllText" xml:space="preserve">
+    <value>Copy original text to translation for all the file starting in the actual segment until reaching the last one.
+(F9)</value>
+  </data>
 </root>

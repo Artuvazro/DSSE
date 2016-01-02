@@ -78,6 +78,10 @@ namespace Devil_Survivor_Script_Editor
         {
             e.CanExecute = true;
         }
+        private void CopyAllCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
 
         List<string> archivosRuta = new List<string>();
         List<string> archivosNombres = new List<string>();
@@ -139,6 +143,7 @@ namespace Devil_Survivor_Script_Editor
 
             buttonSiguienteTexto.IsEnabled = true;
             buttonCopiarTexto.IsEnabled = true;
+            buttonCopyAll.IsEnabled = true;
             buttonOpeninNote.IsEnabled = true;
             currentText = 0;
 
@@ -210,7 +215,7 @@ namespace Devil_Survivor_Script_Editor
                         currentText = Int32.Parse(currentNumberBox.Text);
                         originalTextBox.Text = lineasTexto[currentText];
                     }
-                    if (currentNumberBox.Text == "0")
+                    if ((currentNumberBox.Text == "0") || (((Int32.Parse(currentNumberBox.Text) > 0)) && (Int32.Parse(currentNumberBox.Text) != maxLineasTexto)))
                     {
                         buttonAnteriorTexto.IsEnabled = false;
                         buttonSiguienteTexto.IsEnabled = true;
@@ -239,6 +244,25 @@ namespace Devil_Survivor_Script_Editor
         private void buttonCopiarTexto_Click(object sender, RoutedEventArgs e)
         {
             if ((originalTextBox.Text != "") && (archivoPrevio != "")) traduccionTextBox.Text = originalTextBox.Text;
+        }
+
+        private void buttonCopyAll_Click(object sender, RoutedEventArgs e)
+        {
+            while (currentText < maxLineasTexto)
+            {
+                
+                traduccionTextBox.Text = originalTextBox.Text;
+                saving.saveSegment(archivoPrevio, currentText, maxLineasTexto, lineasTexto, traduccionTextBox.Text);
+                currentText++;
+                originalTextBox.Text = lineasTexto[currentText];
+                //Console.WriteLine(currentText + " / " + maxLineasTexto + " " + lineasTexto[currentText]);
+            }
+
+            traduccionTextBox.Text = originalTextBox.Text;
+            textNumber.Content = " / " + maxLineasTexto;
+            currentNumberBox.Text = currentText.ToString();
+            if (currentText == maxLineasTexto) buttonSiguienteTexto.IsEnabled = false;
+            if (currentText != 0) buttonAnteriorTexto.IsEnabled = true;
         }
 
 
@@ -393,7 +417,7 @@ namespace Devil_Survivor_Script_Editor
                                             if ((d.Element("seg").Value != "") && (d.Element("seg").Value != "[new]"))
                                             {
                                                 traduccionTextBox.Text = d.Element("seg").Value;
-                                                Console.WriteLine("Fuzzy Match!");
+                                                //Console.WriteLine("Fuzzy Match!");
                                                 textBlockAT.Text = fuzzy.matchPercent + "%";
                                                 showFT(true);
                                             }
@@ -498,6 +522,7 @@ namespace Devil_Survivor_Script_Editor
                 aboutOpen = true;
             }
         }
+
     }
 
 
@@ -548,6 +573,17 @@ namespace Devil_Survivor_Script_Editor
                         new InputGestureCollection()
                         {
                                 new KeyGesture(Key.F1)
+                        }
+            );
+        public static readonly RoutedUICommand CopyAll = new RoutedUICommand
+            (
+
+                        "CopyAll",
+                        "CopyAll",
+                        typeof(CustomCommands),
+                        new InputGestureCollection()
+                        {
+                                new KeyGesture(Key.F9)
                         }
             );
 

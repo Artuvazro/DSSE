@@ -97,6 +97,16 @@ namespace Devil_Survivor_Script_Editor.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Copy original text to translation for all the file starting in the actual segment until reaching the last one.
+        ///(F9).
+        /// </summary>
+        public static string copyAllText {
+            get {
+                return ResourceManager.GetString("copyAllText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Copy original text to translation
         ///(F1).
         /// </summary>

@@ -248,4 +248,8 @@ Yusuke Kamiyamane
   <data name="words" xml:space="preserve">
     <value>Palabras: </value>
   </data>
+  <data name="copyAllText" xml:space="preserve">
+    <value>Copia todo el texto original a la traducción desde la posición actual hasta el final del archivo.
+(F9)</value>
+  </data>
 </root>

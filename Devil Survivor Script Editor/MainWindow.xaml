@@ -14,6 +14,7 @@
         <CommandBinding Command="local:CustomCommands.Prev" CanExecute="PrevCommand_CanExecute" Executed="buttonAnteriorTexto_Click" />
         <CommandBinding Command="local:CustomCommands.Goto" CanExecute="GotoCommand_CanExecute" Executed="GotoCommand_Executed" />
         <CommandBinding Command="local:CustomCommands.Copy" CanExecute="CopyCommand_CanExecute" Executed="buttonCopiarTexto_Click" />
+        <CommandBinding Command="local:CustomCommands.CopyAll" CanExecute="CopyAllCommand_CanExecute" Executed="buttonCopyAll_Click" />
     </Window.CommandBindings>
     <Grid Width="1024" Height="720">
         <Grid.ColumnDefinitions>
@@ -111,5 +112,8 @@
             </StatusBarItem>
         </StatusBar>
         <TextBlock x:Name="textBlockAT" Grid.Column="1" HorizontalAlignment="Left" Margin="622,532,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="#FF66FF22" Foreground="White" FontWeight="Bold" Width="42" TextAlignment="Center" FontSize="16" FontFamily="Trebuchet MS" UseLayoutRounding="False" IsHitTestVisible="True" ToolTip="{x:Static p:Resources.ATtip}" Panel.ZIndex="1" Opacity="0.7" Visibility="Hidden"/>
+        <Button x:Name="buttonCopyAll" Command="local:CustomCommands.CopyAll" Grid.Column="1" HorizontalAlignment="Left" Margin="299,388,0,0" VerticalAlignment="Top" Width="41" Height="15" ToolTip="{x:Static p:Resources.copyAllText}" IsEnabled="False">
+            <Image Source="images/icons/arrow-stop-270.png" Width="31" Height="11"/>
+        </Button>
     </Grid>
 </Window>
