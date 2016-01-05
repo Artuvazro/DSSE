@@ -30,8 +30,9 @@ namespace Devil_Survivor_Script_Editor
 
             //CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("es-ES");
             //CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("es-ES");
-
+            
             InitializeComponent();
+            lang_comboBox.SelectedIndex = Properties.Settings.Default.selectedLang;
             if (!Directory.Exists("./DSSE-files")) Directory.CreateDirectory("./DSSE-files");
             if (!Directory.Exists("./DSSE-files/translation")) Directory.CreateDirectory("./DSSE-files/translation");
             if (!Directory.Exists("./DSSE-files/output")) Directory.CreateDirectory("./DSSE-files/output");
@@ -41,6 +42,8 @@ namespace Devil_Survivor_Script_Editor
             generateOutputBGW.ProgressChanged += new ProgressChangedEventHandler(generateOutputBGW_ProgressChanged);
             generateOutputBGW.RunWorkerCompleted += new RunWorkerCompletedEventHandler(generateOutputBGW_RunWorkerCompleted);
             generateOutputBGW.WorkerReportsProgress = true;
+
+            
 
         }
 
@@ -523,6 +526,11 @@ namespace Devil_Survivor_Script_Editor
             }
         }
 
+        private void lang_comboBox_DropDownClosed(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.selectedLang = lang_comboBox.SelectedIndex;
+            Properties.Settings.Default.Save();
+        }
     }
 
 

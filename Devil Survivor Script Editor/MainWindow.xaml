@@ -71,6 +71,10 @@
                         <TextBlock Text="{x:Static p:Resources.about}" FontSize="12" FontFamily="Tahoma" Padding="5,0,0,0"/>
                     </StackPanel>
                 </Button>
+                <ComboBox x:Name="lang_comboBox" Height="20" Margin="630,0,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="0" DropDownClosed="lang_comboBox_DropDownClosed">
+                    <ComboBoxItem Content="Latin"/>
+                    <ComboBoxItem Content="Cyrillic"/>
+                </ComboBox>
             </ToolBar>
         </ToolBarTray>
         <Button x:Name="buttonSiguienteTexto" Command="local:CustomCommands.Next" Grid.Column="1" HorizontalAlignment="Left" Margin="501,349,0,0" VerticalAlignment="Top" Width="43" Height="34" IsEnabled="False" ToolTip="{x:Static p:Resources.nextSegText}">
