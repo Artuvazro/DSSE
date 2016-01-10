@@ -126,6 +126,29 @@ namespace Devil_Survivor_Script_Editor
                 memory.saveToMemory(originalTextBox.Text, traduccionTextBox.Text);
             }
 
+            if (archivosListBox.SelectedItem.ToString() == "ds_profile")
+            {
+                textSourceGrid.Visibility = Visibility.Hidden;
+                profileSourceGrid.Visibility = Visibility.Visible;
+
+                textTargetGrid.Visibility = Visibility.Hidden;
+                profileTargetGrid.Visibility = Visibility.Visible;
+
+            }
+            else
+            {
+                textSourceGrid.Visibility = Visibility.Visible;
+                profileSourceGrid.Visibility = Visibility.Hidden;
+
+                textTargetGrid.Visibility = Visibility.Visible;
+                profileTargetGrid.Visibility = Visibility.Hidden;
+            }
+
+            loadSourceText();
+        }
+
+        private void loadSourceText()
+        {
             archivoPrevio = archivosNombres[archivosListBox.SelectedIndex];
             string textoConvertido = leerArchivo.leer(archivosRuta[archivosListBox.SelectedIndex]);
 
@@ -140,7 +163,7 @@ namespace Devil_Survivor_Script_Editor
 
             originalTextBox.Text = lineasTexto[0];
 
-            maxLineasTexto = lineasTexto.Count()-1;
+            maxLineasTexto = lineasTexto.Count() - 1;
             currentNumberBox.Text = "0";
             textNumber.Content = " / " + maxLineasTexto;
 
@@ -530,6 +553,8 @@ namespace Devil_Survivor_Script_Editor
         {
             Properties.Settings.Default.selectedLang = lang_comboBox.SelectedIndex;
             Properties.Settings.Default.Save();
+
+            if(archivosListBox.SelectedIndex != -1) loadSourceText();
         }
     }
 
