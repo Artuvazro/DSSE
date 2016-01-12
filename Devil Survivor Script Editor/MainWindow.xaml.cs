@@ -241,7 +241,7 @@ namespace Devil_Survivor_Script_Editor
                         currentText = Int32.Parse(currentNumberBox.Text);
                         originalTextBox.Text = lineasTexto[currentText];
                     }
-                    if ((currentNumberBox.Text == "0") || (((Int32.Parse(currentNumberBox.Text) > 0)) && (Int32.Parse(currentNumberBox.Text) != maxLineasTexto)))
+                    if (currentNumberBox.Text == "0") 
                     {
                         buttonAnteriorTexto.IsEnabled = false;
                         buttonSiguienteTexto.IsEnabled = true;
@@ -252,10 +252,12 @@ namespace Devil_Survivor_Script_Editor
                         buttonAnteriorTexto.IsEnabled = true;
                     }
 
-                    else if ((Int32.Parse(currentNumberBox.Text) >= 0) && (Int32.Parse(currentNumberBox.Text) != maxLineasTexto))
+                    else if ((Int32.Parse(currentNumberBox.Text) >= 0) && (Int32.Parse(currentNumberBox.Text) < maxLineasTexto))
                     {
                         buttonAnteriorTexto.IsEnabled = true;
+                        buttonSiguienteTexto.IsEnabled = true;
                     }
+
 
                     loadTranslatedText();
                 }

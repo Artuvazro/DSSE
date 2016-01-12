@@ -281,8 +281,8 @@ namespace Devil_Survivor_Script_Editor
                 {"816A",")"},
                 {"8196","*"},
                 {"8241","!!"},
-                {"00","[00]"},
-                {"3C62723E","[br]"},
+                {"00","[00]\n"},
+                {"3C62723E","\n"},
                 {"3C633D30353E","[c=05]"},
                 {"3C636E3D303030443E","[cn=000D]"},
                 {"3C636E3D303030303E","[cn=0000]"},
@@ -296,7 +296,7 @@ namespace Devil_Survivor_Script_Editor
 
 
 
-            
+
         };
 
         public static Dictionary<string, string> conversion;
