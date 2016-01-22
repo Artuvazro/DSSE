@@ -149,17 +149,32 @@ namespace Devil_Survivor_Script_Editor
 
         private void loadSourceText()
         {
-            archivoPrevio = archivosNombres[archivosListBox.SelectedIndex];
-            string textoConvertido = leerArchivo.leer(archivosRuta[archivosListBox.SelectedIndex]);
-
-            string[] result = Regex.Split(textoConvertido, @"\[00\]\n|(?=\[new\])");
-            lineasTexto.Clear();
-            foreach (string s in result)
+            if (File.Exists("./DSSE-files/translation/" + archivosListBox.SelectedItem + ".xml"))
             {
-                lineasTexto.Add(s);
-            }
+                //Console.WriteLine("File exists");
+                archivoPrevio = archivosNombres[archivosListBox.SelectedIndex];
+                XDocument document5 = XDocument.Load("./DSSE-files/translation/" + archivosListBox.SelectedItem + ".xml");
+                XElement root5 = document5.Root;
+                lineasTexto.Clear();
+                lineasTexto = root5.Descendants("Original").Select(x => x.Value).ToList();
 
-            lineasTexto.RemoveAll(item => item == "");
+            }
+            else
+            {
+                //Console.WriteLine("File doesn't exist");
+
+                archivoPrevio = archivosNombres[archivosListBox.SelectedIndex];
+                string textoConvertido = leerArchivo.leer(archivosRuta[archivosListBox.SelectedIndex]);
+
+                string[] result = Regex.Split(textoConvertido, @"\[00\]\n|(?=\[new\])");
+                lineasTexto.Clear();
+                foreach (string s in result)
+                {
+                    lineasTexto.Add(s);
+                }
+
+                lineasTexto.RemoveAll(item => item == "");
+            }
 
             originalTextBox.Text = lineasTexto[0];
 
