@@ -416,7 +416,6 @@ namespace Devil_Survivor_Script_Editor
                                        where (string)e.Attribute("lang") == "en"
                                        where (string)e.Element("seg") == originalTextBox.Text
                                        select e.NextNode;
-
                     //if (memTranslate != null)
                     if (memTranslate.Any())
                     {
@@ -430,49 +429,49 @@ namespace Devil_Survivor_Script_Editor
                                 //Console.WriteLine("AUTO TRANSLATED FROM MEMORY!");
                                 showAT(true);
                             }
-
-                            else if (e.Element("seg").Value == "")
-                            {
-                                int i = 0;
-                                List<string> stringList = new List<string>();
-                                stringList = (from d in root2.Descendants("tuv")
-                                              where (string)d.Attribute("lang") == "en"
-                                              select d)
-                                             .Elements("seg")
-                                             .Select(d => d.Value)
-                                             .ToList();
-
-                                while (i != stringList.Count())
-                                {
-                                    //Console.WriteLine(fuzzy.match(originalTextBox.Text, stringList[i]) + "%");
-                                    string fmatch = fuzzy.match(originalTextBox.Text, stringList[i]);
-                                    //Console.WriteLine(fmatch);
-
-                                    var fuzzymatch = from d in root2.Descendants("tuv")
-                                             where (string)d.Attribute("lang") == "en"
-                                             where (string)d.Element("seg") == fmatch
-                                             select d.NextNode;
-                                    
-                                    if (fuzzymatch.Any())
-                                    {
-                                        foreach(XElement d in fuzzymatch)
-                                        {
-                                            if ((d.Element("seg").Value != "") && (d.Element("seg").Value != "[new]"))
-                                            {
-                                                traduccionTextBox.Text = d.Element("seg").Value;
-                                                //Console.WriteLine("Fuzzy Match!");
-                                                textBlockAT.Text = fuzzy.matchPercent + "%";
-                                                showFT(true);
-                                            }
-                                        }
-                                    }
-                                    i++;
-                                }
-                            }
-                            
                         }
 
                     }
+
+                    else 
+                    {
+                        int i = 0;
+                        List<string> stringList = new List<string>();
+                        stringList = (from d in root2.Descendants("tuv")
+                                      where (string)d.Attribute("lang") == "en"
+                                      select d)
+                                     .Elements("seg")
+                                     .Select(d => d.Value)
+                                     .ToList();
+
+                        while (i != stringList.Count())
+                        {
+                            //Console.WriteLine(fuzzy.match(originalTextBox.Text, stringList[i]) + "%");
+                            string fmatch = fuzzy.match(originalTextBox.Text, stringList[i]);
+                            //Console.WriteLine(fmatch);
+
+                            var fuzzymatch = from d in root2.Descendants("tuv")
+                                             where (string)d.Attribute("lang") == "en"
+                                             where (string)d.Element("seg") == fmatch
+                                             select d.NextNode;
+
+                            if (fuzzymatch.Any())
+                            {
+                                foreach (XElement d in fuzzymatch)
+                                {
+                                    if ((d.Element("seg").Value != "") && (d.Element("seg").Value != "[new]"))
+                                    {
+                                        traduccionTextBox.Text = d.Element("seg").Value;
+                                        //Console.WriteLine("Fuzzy Match!");
+                                        textBlockAT.Text = fuzzy.matchPercent + "%";
+                                        showFT(true);
+                                    }
+                                }
+                            }
+                            i++;
+                        }
+                    }
+
                     memTranslate = null;
                 }
 
