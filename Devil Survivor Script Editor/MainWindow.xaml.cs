@@ -30,20 +30,20 @@ namespace Devil_Survivor_Script_Editor
 
             //CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("es-ES");
             //CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("es-ES");
-            
+
             InitializeComponent();
             lang_comboBox.SelectedIndex = Properties.Settings.Default.selectedLang;
             if (!Directory.Exists("./DSSE-files")) Directory.CreateDirectory("./DSSE-files");
             if (!Directory.Exists("./DSSE-files/translation")) Directory.CreateDirectory("./DSSE-files/translation");
             if (!Directory.Exists("./DSSE-files/output")) Directory.CreateDirectory("./DSSE-files/output");
             originalTextBox.Text = Properties.Resources.openAny;
-        
+
             generateOutputBGW.DoWork += new DoWorkEventHandler(generateOutputBGW_DoWork);
             generateOutputBGW.ProgressChanged += new ProgressChangedEventHandler(generateOutputBGW_ProgressChanged);
             generateOutputBGW.RunWorkerCompleted += new RunWorkerCompletedEventHandler(generateOutputBGW_RunWorkerCompleted);
             generateOutputBGW.WorkerReportsProgress = true;
 
-            
+
 
         }
 
@@ -123,7 +123,7 @@ namespace Devil_Survivor_Script_Editor
             if (archivoPrevio != "")
             {
                 saving.saveSegment(archivoPrevio, currentText, maxLineasTexto, lineasTexto, traduccionTextBox.Text);
-                memory.saveToMemory(originalTextBox.Text, traduccionTextBox.Text);
+                if (traduccionTextBox.Text != "") memory.saveToMemory(originalTextBox.Text, traduccionTextBox.Text);
             }
 
             if (archivosListBox.SelectedItem.ToString() == "ds_profile")
@@ -200,7 +200,7 @@ namespace Devil_Survivor_Script_Editor
             if (buttonSiguienteTexto.IsEnabled)
             {
                 saving.saveSegment(archivoPrevio, currentText, maxLineasTexto, lineasTexto, traduccionTextBox.Text);
-                memory.saveToMemory(originalTextBox.Text, traduccionTextBox.Text);
+                if (traduccionTextBox.Text != "") memory.saveToMemory(originalTextBox.Text, traduccionTextBox.Text);
             }
             if (currentText != maxLineasTexto)
             {
@@ -223,7 +223,7 @@ namespace Devil_Survivor_Script_Editor
             if (buttonAnteriorTexto.IsEnabled)
             {
                 saving.saveSegment(archivoPrevio, currentText, maxLineasTexto, lineasTexto, traduccionTextBox.Text);
-                memory.saveToMemory(originalTextBox.Text, traduccionTextBox.Text);
+                if (traduccionTextBox.Text != "") memory.saveToMemory(originalTextBox.Text, traduccionTextBox.Text);
             }
 
             if (currentText != 0)
@@ -247,7 +247,7 @@ namespace Devil_Survivor_Script_Editor
             if ((currentNumberBox.Text.All(char.IsDigit) == true) && currentNumberBox.Text != "")
             {
                 saving.saveSegment(archivoPrevio, currentText, maxLineasTexto, lineasTexto, traduccionTextBox.Text);
-                memory.saveToMemory(originalTextBox.Text, traduccionTextBox.Text);
+                if (traduccionTextBox.Text != "") memory.saveToMemory(originalTextBox.Text, traduccionTextBox.Text);
 
                 if (e.Key == Key.Enter)
                 {
@@ -256,7 +256,7 @@ namespace Devil_Survivor_Script_Editor
                         currentText = Int32.Parse(currentNumberBox.Text);
                         originalTextBox.Text = lineasTexto[currentText];
                     }
-                    if (currentNumberBox.Text == "0") 
+                    if (currentNumberBox.Text == "0")
                     {
                         buttonAnteriorTexto.IsEnabled = false;
                         buttonSiguienteTexto.IsEnabled = true;
@@ -293,7 +293,7 @@ namespace Devil_Survivor_Script_Editor
         {
             while (currentText < maxLineasTexto)
             {
-                
+
                 traduccionTextBox.Text = originalTextBox.Text;
                 saving.saveSegment(archivoPrevio, currentText, maxLineasTexto, lineasTexto, traduccionTextBox.Text);
                 currentText++;
@@ -313,19 +313,21 @@ namespace Devil_Survivor_Script_Editor
         {
             if (statusText.Text != "") { statusText.Text = ""; iconStatus.Source = null; }
 
-            try {
+            try
+            {
                 tagParser.tagParse(traduccionTextBox, OutPutTranstextBlock);
             }
-            catch {
+            catch
+            {
                 Image myImage = new Image();
                 BitmapImage myImageSource = new BitmapImage();
                 myImageSource.BeginInit();
-                myImageSource.UriSource = new Uri("./images/icons/exclamation-red.png",UriKind.Relative);
+                myImageSource.UriSource = new Uri("./images/icons/exclamation-red.png", UriKind.Relative);
                 myImageSource.EndInit();
                 iconStatus.Source = myImageSource;
                 string myText = Properties.Resources.syntaxErr;
                 Run myTextR = new Run(myText);
-                myTextR.Foreground = new SolidColorBrush(Color.FromRgb(145,65,65));
+                myTextR.Foreground = new SolidColorBrush(Color.FromRgb(145, 65, 65));
                 statusText.Inlines.Add(myTextR);
             };
 
@@ -344,10 +346,10 @@ namespace Devil_Survivor_Script_Editor
                 while (index < text.Length && Char.IsWhiteSpace(text[index]) == true)
                     index++;
 
-                
+
             }
 
-            wordsTextBlock.Text = Properties.Resources.words + wordCount.ToString() +" | "+ Properties.Resources.lines + traduccionTextBox.LineCount.ToString();
+            wordsTextBlock.Text = Properties.Resources.words + wordCount.ToString() + " | " + Properties.Resources.lines + traduccionTextBox.LineCount.ToString();
         }
 
         private void originalTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -377,7 +379,7 @@ namespace Devil_Survivor_Script_Editor
 
         private void addNewButton_Click(object sender, RoutedEventArgs e)
         {
-            traduccionTextBox.Text = traduccionTextBox.Text.Insert(traduccionTextBox.CaretIndex,"[new]");
+            traduccionTextBox.Text = traduccionTextBox.Text.Insert(traduccionTextBox.CaretIndex, "[new]");
         }
 
         private void addInvertedButton_Click(object sender, RoutedEventArgs e)
@@ -388,12 +390,12 @@ namespace Devil_Survivor_Script_Editor
         private void buttonOpeninNote_Click(object sender, RoutedEventArgs e)
         {
             if (File.Exists((Environment.CurrentDirectory + "/DSSE-files/translation/" + archivoPrevio + ".xml")))
-            System.Diagnostics.Process.Start(Environment.CurrentDirectory + "/DSSE-files/translation/" + archivoPrevio + ".xml");
+                System.Diagnostics.Process.Start(Environment.CurrentDirectory + "/DSSE-files/translation/" + archivoPrevio + ".xml");
         }
 
         private void loadTranslatedText()
         {
-            if (stateATFT == true)  showAT(false);
+            if (stateATFT == true) showAT(false);
             traduccionTextBox.Text = "";
 
             if (File.Exists("./DSSE-files/translation/" + archivoPrevio + ".xml"))
@@ -433,7 +435,7 @@ namespace Devil_Survivor_Script_Editor
 
                     }
 
-                    else 
+                    else
                     {
                         int i = 0;
                         List<string> stringList = new List<string>();
@@ -443,32 +445,41 @@ namespace Devil_Survivor_Script_Editor
                                      .Elements("seg")
                                      .Select(d => d.Value)
                                      .ToList();
+                        int stringListCount = stringList.Count();
+                        string fmatch;
+                        IEnumerable<XNode> fuzzymatch;
+                        int bestFuzzyPercent = 0;
+                        string bestfmatch = "";
 
-                        while (i != stringList.Count())
+                        for (i = 0; i < stringListCount; i++)
                         {
                             //Console.WriteLine(fuzzy.match(originalTextBox.Text, stringList[i]) + "%");
-                            string fmatch = fuzzy.match(originalTextBox.Text, stringList[i]);
-                            //Console.WriteLine(fmatch);
+                            //Console.WriteLine(fmatch + " " + fuzzy.matchPercent);
+                            fmatch = fuzzy.match(originalTextBox.Text, stringList[i]);
 
-                            var fuzzymatch = from d in root2.Descendants("tuv")
-                                             where (string)d.Attribute("lang") == "en"
-                                             where (string)d.Element("seg") == fmatch
-                                             select d.NextNode;
-
-                            if (fuzzymatch.Any())
+                            if (fuzzy.matchPercent > bestFuzzyPercent)
                             {
-                                foreach (XElement d in fuzzymatch)
+                                bestFuzzyPercent = fuzzy.matchPercent;
+                                bestfmatch = fmatch;
+                            }
+                        }
+                        fuzzymatch = from d in root2.Descendants("tuv")
+                                     where (string)d.Attribute("lang") == "en"
+                                     where (string)d.Element("seg") == bestfmatch
+                                     select d.NextNode;
+
+                        if (fuzzymatch.Any())
+                        {
+                            foreach (XElement d in fuzzymatch)
+                            {
+                                if ((d.Element("seg").Value != "") && (d.Element("seg").Value != "[new]"))
                                 {
-                                    if ((d.Element("seg").Value != "") && (d.Element("seg").Value != "[new]"))
-                                    {
-                                        traduccionTextBox.Text = d.Element("seg").Value;
-                                        //Console.WriteLine("Fuzzy Match!");
-                                        textBlockAT.Text = fuzzy.matchPercent + "%";
-                                        showFT(true);
-                                    }
+                                    traduccionTextBox.Text = d.Element("seg").Value;
+                                    textBlockAT.Text = bestFuzzyPercent + "%";
+                                    showFT(true);
+                                    //Console.WriteLine("Fuzzy Match!"); 
                                 }
                             }
-                            i++;
                         }
                     }
 
@@ -480,7 +491,8 @@ namespace Devil_Survivor_Script_Editor
 
         private bool stateATFT;
 
-        private void showAT (bool mode) {
+        private void showAT(bool mode)
+        {
             if (mode == true)
             {
                 traduccionTextBox.BorderBrush = new SolidColorBrush(Color.FromArgb(255, 102, 255, 34));
@@ -570,7 +582,7 @@ namespace Devil_Survivor_Script_Editor
             Properties.Settings.Default.selectedLang = lang_comboBox.SelectedIndex;
             Properties.Settings.Default.Save();
 
-            if(archivosListBox.SelectedIndex != -1) loadSourceText();
+            if (archivosListBox.SelectedIndex != -1) loadSourceText();
         }
     }
 
