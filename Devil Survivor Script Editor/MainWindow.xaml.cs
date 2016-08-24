@@ -446,7 +446,7 @@ namespace Devil_Survivor_Script_Editor
                                      .Select(d => d.Value)
                                      .ToList();
                         int stringListCount = stringList.Count();
-                        string fmatch;
+                        string fmatch = "";
                         IEnumerable<XNode> fuzzymatch;
                         int bestFuzzyPercent = 0;
                         string bestfmatch = "";

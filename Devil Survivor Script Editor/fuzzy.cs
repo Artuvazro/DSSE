@@ -13,6 +13,7 @@ namespace Devil_Survivor_Script_Editor
 
         public static string match(string s, string t)
         {
+            matchPercent = 0;
             int n = s.Length;
             int m = t.Length;
             int[,] d = new int[n + 1, m + 1];
@@ -58,8 +59,8 @@ namespace Devil_Survivor_Script_Editor
             int value = (100 - (d[n, m] * 100) / n);
             if (value >= 70)
             {
-                //Console.WriteLine(value + "%");
                 matchPercent = value;
+                //Console.WriteLine(value + "%");
                 return t;
             }
             else return "";
