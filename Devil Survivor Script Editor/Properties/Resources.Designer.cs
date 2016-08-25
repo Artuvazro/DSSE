@@ -412,7 +412,7 @@ namespace Devil_Survivor_Script_Editor.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a More then 3 lines detected!.
+        ///   Busca una cadena traducida similar a More than 3 lines detected!.
         /// </summary>
         public static string toomanylines {
             get {

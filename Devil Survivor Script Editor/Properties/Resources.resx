@@ -253,6 +253,6 @@ Yusuke Kamiyamane
 (F9)</value>
   </data>
   <data name="toomanylines" xml:space="preserve">
-    <value>More then 3 lines detected!</value>
+    <value>More than 3 lines detected!</value>
   </data>
 </root>
