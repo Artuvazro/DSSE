@@ -252,4 +252,7 @@ Yusuke Kamiyamane
     <value>Copy original text to translation for all the file starting in the actual segment until reaching the last one.
 (F9)</value>
   </data>
+  <data name="toomanylines" xml:space="preserve">
+    <value>More then 3 lines detected!</value>
+  </data>
 </root>

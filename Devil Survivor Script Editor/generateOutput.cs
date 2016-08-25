@@ -482,7 +482,7 @@ namespace Devil_Survivor_Script_Editor
                     int lineSize = ((lineasHex[q].Length/2)+1);
                     //Console.WriteLine(lineSize + "\n\r");
                     //Console.WriteLine("Point base: "+pointBase.ToString() + "\r\n");
-                    var newPointerBE = Convert.ToInt16((_pointBaseBEDecimal + lineSize)).ToString("x").PadLeft(4, '0').ToCharArray();
+                    var newPointerBE = Convert.ToInt32((_pointBaseBEDecimal + lineSize)).ToString("x").PadLeft(4, '0').ToCharArray();
                     string newPointerLE = newPointerBE[2].ToString() + newPointerBE[3].ToString() + newPointerBE[0].ToString() + newPointerBE[1].ToString();
                     //pointers += newPointerLE.ToString().PadRight(8, '0');
                     pointers2.Append(newPointerLE.ToString().PadRight(8, '0'));
@@ -491,7 +491,7 @@ namespace Devil_Survivor_Script_Editor
 
                 if (filesTranslatedNames[i].Contains("ds_eventm"))
                 {
-                    numberofTextSegments = Convert.ToInt16(numberofTextSegments);
+                    numberofTextSegments = Convert.ToInt32(numberofTextSegments);
                     string numberofTextSegmentsS = numberofTextSegments.ToString("x").PadRight(8, '0');
                     //Console.WriteLine(numberofTextSegmentsS);
                     pointers = numberofTextSegmentsS + punterosDiv[1].Groups[1].Value + "0000" + pointers2.ToString();
@@ -521,7 +521,7 @@ namespace Devil_Survivor_Script_Editor
                     archivoFinal = pointers + fixedData + textoConvertido;
                 }
 
-                var datosLengthArray = Convert.ToInt16((archivoFinal.Length / 2)).ToString("x").PadLeft(4, '0').ToCharArray();
+                var datosLengthArray = Convert.ToInt32((archivoFinal.Length / 2)).ToString("x").PadLeft(4, '0').ToCharArray();
                 var datosLength = datosLengthArray[2].ToString() + datosLengthArray[3].ToString() + datosLengthArray[0].ToString() + datosLengthArray[1].ToString();
 
                 

@@ -120,31 +120,33 @@ namespace Devil_Survivor_Script_Editor
 
         private void archivosListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (archivoPrevio != "")
-            {
-                saving.saveSegment(archivoPrevio, currentText, maxLineasTexto, lineasTexto, traduccionTextBox.Text);
-                if (traduccionTextBox.Text != "") memory.saveToMemory(originalTextBox.Text, traduccionTextBox.Text);
-            }
 
-            if (archivosListBox.SelectedItem.ToString() == "ds_profile")
-            {
-                textSourceGrid.Visibility = Visibility.Hidden;
-                profileSourceGrid.Visibility = Visibility.Visible;
+                if (archivoPrevio != "")
+                {
+                    saving.saveSegment(archivoPrevio, currentText, maxLineasTexto, lineasTexto, traduccionTextBox.Text);
+                    if (traduccionTextBox.Text != "") memory.saveToMemory(originalTextBox.Text, traduccionTextBox.Text);
+                }
 
-                textTargetGrid.Visibility = Visibility.Hidden;
-                profileTargetGrid.Visibility = Visibility.Visible;
+                if (archivosListBox.SelectedItem.ToString() == "ds_profile")
+                {
+                    textSourceGrid.Visibility = Visibility.Hidden;
+                    profileSourceGrid.Visibility = Visibility.Visible;
 
-            }
-            else
-            {
-                textSourceGrid.Visibility = Visibility.Visible;
-                profileSourceGrid.Visibility = Visibility.Hidden;
+                    textTargetGrid.Visibility = Visibility.Hidden;
+                    profileTargetGrid.Visibility = Visibility.Visible;
 
-                textTargetGrid.Visibility = Visibility.Visible;
-                profileTargetGrid.Visibility = Visibility.Hidden;
-            }
+                }
+                else
+                {
+                    textSourceGrid.Visibility = Visibility.Visible;
+                    profileSourceGrid.Visibility = Visibility.Hidden;
 
-            loadSourceText();
+                    textTargetGrid.Visibility = Visibility.Visible;
+                    profileTargetGrid.Visibility = Visibility.Hidden;
+                }
+
+                loadSourceText();
+            
         }
 
         private void loadSourceText()
@@ -197,54 +199,57 @@ namespace Devil_Survivor_Script_Editor
         private void buttonSiguienteTexto_Click(object sender, RoutedEventArgs e)
         {
 
-            if (buttonSiguienteTexto.IsEnabled)
-            {
-                saving.saveSegment(archivoPrevio, currentText, maxLineasTexto, lineasTexto, traduccionTextBox.Text);
-                if (traduccionTextBox.Text != "") memory.saveToMemory(originalTextBox.Text, traduccionTextBox.Text);
-            }
-            if (currentText != maxLineasTexto)
-            {
-                currentText++;
-                currentNumberBox.Text = currentText.ToString();
-                originalTextBox.Text = lineasTexto[currentText];
-                textNumber.Content = " / " + maxLineasTexto;
-            }
+                if (buttonSiguienteTexto.IsEnabled)
+                {
+                    saving.saveSegment(archivoPrevio, currentText, maxLineasTexto, lineasTexto, traduccionTextBox.Text);
+                    if (traduccionTextBox.Text != "") memory.saveToMemory(originalTextBox.Text, traduccionTextBox.Text);
+                }
+                if (currentText != maxLineasTexto)
+                {
+                    currentText++;
+                    currentNumberBox.Text = currentText.ToString();
+                    originalTextBox.Text = lineasTexto[currentText];
+                    textNumber.Content = " / " + maxLineasTexto;
+                }
 
-            if (currentText == maxLineasTexto) buttonSiguienteTexto.IsEnabled = false;
+                if (currentText == maxLineasTexto) buttonSiguienteTexto.IsEnabled = false;
 
-            if (currentText != 0) buttonAnteriorTexto.IsEnabled = true;
+                if (currentText != 0) buttonAnteriorTexto.IsEnabled = true;
 
-            loadTranslatedText();
+                loadTranslatedText();
+            
 
         }
 
         private void buttonAnteriorTexto_Click(object sender, RoutedEventArgs e)
         {
-            if (buttonAnteriorTexto.IsEnabled)
-            {
-                saving.saveSegment(archivoPrevio, currentText, maxLineasTexto, lineasTexto, traduccionTextBox.Text);
-                if (traduccionTextBox.Text != "") memory.saveToMemory(originalTextBox.Text, traduccionTextBox.Text);
-            }
 
-            if (currentText != 0)
-            {
-                currentText--;
-                originalTextBox.Text = lineasTexto[currentText];
-                currentNumberBox.Text = currentText.ToString();
-                textNumber.Content = " / " + maxLineasTexto;
-            }
-            else buttonAnteriorTexto.IsEnabled = false;
+                if (buttonAnteriorTexto.IsEnabled)
+                {
+                    saving.saveSegment(archivoPrevio, currentText, maxLineasTexto, lineasTexto, traduccionTextBox.Text);
+                    if (traduccionTextBox.Text != "") memory.saveToMemory(originalTextBox.Text, traduccionTextBox.Text);
+                }
 
-            if (currentText != maxLineasTexto) buttonSiguienteTexto.IsEnabled = true;
-            if (currentText == 0) buttonAnteriorTexto.IsEnabled = false;
+                if (currentText != 0)
+                {
+                    currentText--;
+                    originalTextBox.Text = lineasTexto[currentText];
+                    currentNumberBox.Text = currentText.ToString();
+                    textNumber.Content = " / " + maxLineasTexto;
+                }
+                else buttonAnteriorTexto.IsEnabled = false;
 
-            loadTranslatedText();
+                if (currentText != maxLineasTexto) buttonSiguienteTexto.IsEnabled = true;
+                if (currentText == 0) buttonAnteriorTexto.IsEnabled = false;
+
+                loadTranslatedText();
+            
 
         }
 
         private void currentNumberBox_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            if ((currentNumberBox.Text.All(char.IsDigit) == true) && currentNumberBox.Text != "")
+            if ((currentNumberBox.Text.All(char.IsDigit) == true) && (currentNumberBox.Text != ""))
             {
                 saving.saveSegment(archivoPrevio, currentText, maxLineasTexto, lineasTexto, traduccionTextBox.Text);
                 if (traduccionTextBox.Text != "") memory.saveToMemory(originalTextBox.Text, traduccionTextBox.Text);
@@ -330,6 +335,20 @@ namespace Devil_Survivor_Script_Editor
                 myTextR.Foreground = new SolidColorBrush(Color.FromRgb(145, 65, 65));
                 statusText.Inlines.Add(myTextR);
             };
+
+            if (traduccionTextBox.LineCount > 3)
+            {
+                Image myImage = new Image();
+                BitmapImage myImageSource = new BitmapImage();
+                myImageSource.BeginInit();
+                myImageSource.UriSource = new Uri("./images/icons/exclamation-red.png", UriKind.Relative);
+                myImageSource.EndInit();
+                iconStatus.Source = myImageSource;
+                string myText = Properties.Resources.toomanylines;
+                Run myTextR = new Run(myText);
+                myTextR.Foreground = new SolidColorBrush(Color.FromRgb(145, 65, 65));
+                statusText.Inlines.Add(myTextR);
+            }
 
             string text = traduccionTextBox.Text.Trim();
             int wordCount = 0, index = 0;

@@ -252,4 +252,7 @@ Yusuke Kamiyamane
     <value>Copia todo el texto original a la traducción desde la posición actual hasta el final del archivo.
 (F9)</value>
   </data>
+  <data name="toomanylines" xml:space="preserve">
+    <value>¡Hay más de 3 líneas de texto!</value>
+  </data>
 </root>

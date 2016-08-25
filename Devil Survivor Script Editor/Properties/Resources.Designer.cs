@@ -412,6 +412,15 @@ namespace Devil_Survivor_Script_Editor.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a More then 3 lines detected!.
+        /// </summary>
+        public static string toomanylines {
+            get {
+                return ResourceManager.GetString("toomanylines", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Translation.
         /// </summary>
         public static string translationLabel {
