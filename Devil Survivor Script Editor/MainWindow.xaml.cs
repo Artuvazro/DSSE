@@ -387,6 +387,11 @@ namespace Devil_Survivor_Script_Editor
             traduccionTextBox.Text = addTag(true) + "[color2]" + traduccionTextBox.SelectedText + "[/color]" + addTag(false);
         }
 
+        private void addRedButton_Click(object sender, RoutedEventArgs e)
+        {
+            traduccionTextBox.Text = addTag(true) + "[color3]" + traduccionTextBox.SelectedText + "[/color]" + addTag(false);
+        }
+
         private void addPinkButton_Click(object sender, RoutedEventArgs e)
         {
             traduccionTextBox.Text = addTag(true) + "[color5]" + traduccionTextBox.SelectedText + "[/color]" + addTag(false);

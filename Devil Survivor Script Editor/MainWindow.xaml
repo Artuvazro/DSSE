@@ -105,11 +105,12 @@
         </Button>
         <Grid Grid.Column="1" HorizontalAlignment="Left" Height="46" Margin="450,417,0,0" VerticalAlignment="Top" Width="198.666" Background="{DynamicResource HoverBrush}" UseLayoutRounding="False">
             <Button x:Name="addYellowButton" Content="Yellow" HorizontalAlignment="Left" VerticalAlignment="Top" Width="45" Margin="11,25,0,0" Background="#FF869C00" Click="addYellowButton_Click" ToolTip="{x:Static p:Resources.tagYellowText}"/>
-            <Label x:Name="Tagslabel" Content="{x:Static p:Resources.tagLabel}" HorizontalAlignment="Left" Margin="144,12,0,16" RenderTransformOrigin="-1.605,4.231" Foreground="{DynamicResource ButtonNormalBackground}"/>
+            <Label x:Name="Tagslabel" Content="{x:Static p:Resources.tagLabel}" HorizontalAlignment="Left" Margin="144,24,0,4" RenderTransformOrigin="-1.605,4.231" Foreground="{DynamicResource ButtonNormalBackground}"/>
             <Button x:Name="addYellow2Button" Content="Blue" HorizontalAlignment="Left" VerticalAlignment="Top" Width="51" Margin="58,25,0,0" Background="#FF8C8CBD" Click="addYellow2Button_Click" ToolTip="{x:Static p:Resources.tagBlueText}"/>
             <Button x:Name="addNewButton" Content="New" HorizontalAlignment="Left" VerticalAlignment="Top" Width="45" Margin="10,4,0,0" Background="#FF660D09" Click="addNewButton_Click" ToolTip="{x:Static p:Resources.tagNewText}"/>
             <Button x:Name="addInvertedButton" Content="&#8220;" HorizontalAlignment="Left" VerticalAlignment="Top" Width="25" Margin="113,25,0,0" Click="addInvertedButton_Click" ToolTip="{x:Static p:Resources.tagCommasText}" FontWeight="Bold"/>
             <Button x:Name="addPinkButton" Content="Pink" HorizontalAlignment="Left" VerticalAlignment="Top" Width="51" Margin="58,4,0,0" Background="#FFAA3BAA" Click="addPinkButton_Click" ToolTip="{x:Static p:Resources.tagBlueText}"/>
+            <Button x:Name="addRedButton" Content="Red" HorizontalAlignment="Left" VerticalAlignment="Top" Width="51" Margin="114,4,0,0" Background="#FFAA3B3B" Click="addRedButton_Click" ToolTip="{x:Static p:Resources.tagBlueText}"/>
         </Grid>
         <StatusBar HorizontalAlignment="Left" Height="39" Margin="0,650,0,0" VerticalAlignment="Top" Width="1014" Grid.ColumnSpan="2" Background="#FF2C2C2C" BorderThickness="0,2,0,0">
             <StatusBarItem>
