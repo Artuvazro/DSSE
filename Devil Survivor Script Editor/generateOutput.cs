@@ -338,8 +338,6 @@ namespace Devil_Survivor_Script_Editor
 
             //Console.WriteLine(filesTranslatedNames[0]);
 
-
-
             for (int i = 0; i < fileNumber; i++)
             {
 
