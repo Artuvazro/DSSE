@@ -122,6 +122,7 @@ namespace Devil_Survivor_Script_Editor
                 {"3C636E3D303030433E","[cn=000C]"},
                 {"3C636E3D464645453E","[cn=FFEE]"},
                 {"3C636E3D464645443E","[cn=FFED]"},
+                {"3C636E3D464646443E","[cn=FFFD]"},
                 {"3C703E","[new]"},
                 {"3C633D30393E","[color1]"},
                 {"3C633D46463E","[/color]"},
