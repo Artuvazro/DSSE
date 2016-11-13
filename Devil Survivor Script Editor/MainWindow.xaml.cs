@@ -58,12 +58,20 @@ namespace Devil_Survivor_Script_Editor
 
         private void NextCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = true;
+            if (currentText != maxLineasTexto)
+            {
+                e.CanExecute = true;
+            }
+            else e.CanExecute = false;
         }
 
         private void PrevCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = true;
+            if (currentText != 0)
+            {
+                e.CanExecute = true;
+            }
+            else e.CanExecute = false;
         }
 
         private void GotoCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
