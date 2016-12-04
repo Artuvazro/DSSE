@@ -405,6 +405,11 @@ namespace Devil_Survivor_Script_Editor
             traduccionTextBox.Text = addTag(true) + "[color5]" + traduccionTextBox.SelectedText + "[/color]" + addTag(false);
         }
 
+        private void addOchreButton_Click(object sender, RoutedEventArgs e)
+        {
+            traduccionTextBox.Text = addTag(true) + "[color1]" + traduccionTextBox.SelectedText + "[/color]" + addTag(false);
+        }
+
         private string addTag(bool mode)
         {
             int tagStart = traduccionTextBox.SelectionStart;
@@ -621,6 +626,7 @@ namespace Devil_Survivor_Script_Editor
 
             if (archivosListBox.SelectedIndex != -1) loadSourceText();
         }
+
     }
 
 
