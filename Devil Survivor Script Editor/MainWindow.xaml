@@ -116,13 +116,13 @@
             <StatusBarItem>
                 <Image x:Name="iconStatus" Height="16" Width="16" Opacity="0.8" Margin="0,0,0,10"/>
             </StatusBarItem>
-            <StatusBarItem Margin="0,-3,0,1" Width="486" HorizontalAlignment="Left">
+            <StatusBarItem Margin="0,-3,0,1" Width="460" HorizontalAlignment="Left">
                 <TextBlock x:Name="statusText" TextWrapping="Wrap" FontSize="13.333" Width="460" FontFamily="Tahoma" Height="21" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             </StatusBarItem>
-            <StatusBarItem Margin="0,-3,0,5" Width="196" HorizontalAlignment="Left">
+            <StatusBarItem Margin="0,-3,0,5" Width="150" HorizontalAlignment="Left">
                 <TextBlock x:Name="wordsTextBlock" TextWrapping="Wrap" FontSize="13.333" Width="157" FontFamily="Tahoma" Height="21" HorizontalAlignment="Left" VerticalAlignment="Top" Text="" Foreground="{DynamicResource ButtonNormalBackground}"/>
             </StatusBarItem>
-            <StatusBarItem Width="104" Margin="-50,0,0,0">
+            <StatusBarItem Width="125" Margin="30,0,0,0">
                 <Label x:Name="progressText" Content="" Margin="0,0,0,15" Visibility="Hidden" Foreground="{DynamicResource ButtonNormalBackground}" HorizontalAlignment="Right"/>
             </StatusBarItem>
             <StatusBarItem Margin="0,0,0,13">
