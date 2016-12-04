@@ -12,7 +12,7 @@ namespace Devil_Survivor_Script_Editor
         public static void tagParse (TextBox Box1, TextBlock Box2)
         {
 
-            if (((Box1.Text.Contains("[color1]")) || (Box1.Text.Contains("[color2]")) || (Box1.Text.Contains("[color3]"))  || (Box1.Text.Contains("[color5]"))) && (Box1.Text.Contains("[/color]")))
+            if (((Box1.Text.Contains("[color9]")) || (Box1.Text.Contains("[color2]")) || (Box1.Text.Contains("[color3]"))  || (Box1.Text.Contains("[color5]"))) && (Box1.Text.Contains("[/color]")))
             {
 
                 List<int> tagStart = new List<int>();
@@ -43,7 +43,7 @@ namespace Devil_Survivor_Script_Editor
                     yellowText.Add(Box1.Text.Substring(tagStart[i], tagLength[i]));
                     myYellowRun.Add(new Run(yellowText[i].ToString()));
 
-                    if (tagsFound1[i].Groups[0].Value == "[color1]") myYellowRun[i].Foreground = new SolidColorBrush(Color.FromRgb(219, 196, 104));
+                    if (tagsFound1[i].Groups[0].Value == "[color9]") myYellowRun[i].Foreground = new SolidColorBrush(Color.FromRgb(219, 196, 104));
                     else if (tagsFound1[i].Groups[0].Value == "[color2]") myYellowRun[i].Foreground = new SolidColorBrush(Color.FromRgb(140, 140, 189));
                     else if (tagsFound1[i].Groups[0].Value == "[color3]") myYellowRun[i].Foreground = new SolidColorBrush(Color.FromRgb(255, 0, 0));
                     else if (tagsFound1[i].Groups[0].Value == "[color5]") myYellowRun[i].Foreground = new SolidColorBrush(Color.FromRgb(255, 153, 255));
@@ -73,9 +73,9 @@ namespace Devil_Survivor_Script_Editor
                         //Console.WriteLine("this3");
                     }
 
-                    if (beforeText.ElementAtOrDefault(i) != null) Box2.Inlines.Add(beforeText[i].Replace("[color1]", "").Replace("[/color]", "").Replace("[color2]", "").Replace("[color3]","").Replace("[color5]","").Replace("[new]", ""));
+                    if (beforeText.ElementAtOrDefault(i) != null) Box2.Inlines.Add(beforeText[i].Replace("[color9]", "").Replace("[/color]", "").Replace("[color2]", "").Replace("[color3]","").Replace("[color5]","").Replace("[new]", ""));
                     Box2.Inlines.Add(myYellowRun[i]);
-                    Box2.Inlines.Add(afterText[i].Replace("[color1]", "").Replace("[/color]", "").Replace("[color2]", "").Replace("[color3]","").Replace("[color5]","").Replace("[new]",""));
+                    Box2.Inlines.Add(afterText[i].Replace("[color9]", "").Replace("[/color]", "").Replace("[color2]", "").Replace("[color3]","").Replace("[color5]","").Replace("[new]",""));
                 }
 
                 beforeText.Clear();

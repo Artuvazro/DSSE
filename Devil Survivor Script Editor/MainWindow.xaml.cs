@@ -387,7 +387,7 @@ namespace Devil_Survivor_Script_Editor
 
         private void addYellowButton_Click(object sender, RoutedEventArgs e)
         {
-            traduccionTextBox.Text = addTag(true) + "[color1]" + traduccionTextBox.SelectedText + "[/color]" + addTag(false);
+            traduccionTextBox.Text = addTag(true) + "[color9]" + traduccionTextBox.SelectedText + "[/color]" + addTag(false);
         }
 
         private void addYellow2Button_Click(object sender, RoutedEventArgs e)
