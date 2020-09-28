@@ -108,6 +108,7 @@ namespace Devil_Survivor_Script_Editor
                 {
                     archivosRuta.Clear();
                     archivosRuta.AddRange(Directory.GetFiles(folderResult, "*.cmp"));
+                    archivosRuta.Add("C:\\fake-path\\fusion.cmp");
 
                     archivosNombres.Clear();
                     for (int i = 0; i < archivosRuta.Count; i++)
