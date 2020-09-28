@@ -138,7 +138,8 @@ namespace Devil_Survivor_Script_Editor
                 {@"[color2]","3C633D30363E"},
                 {@"[color3]","3C633D30333E"},
                 {@"[nd=00]","3C6E643D30303E"},
-                {@"[nd=01]","3C6E643D30313E"}
+                {@"[nd=01]","3C6E643D30313E"},
+                {@"[c=02]", "3C633D30323E" }
 
             };
 
@@ -311,7 +312,8 @@ namespace Devil_Survivor_Script_Editor
                 {@"[color2]","3C633D30363E"},
                 {@"[color3]","3C633D30333E"},
                 {@"[nd=00]","3C6E643D30303E"},
-                {@"[nd=01]","3C6E643D30313E"}
+                {@"[nd=01]","3C6E643D30313E"},
+                {@"[c=02]", "3C633D30323E" }
 
         };
 
